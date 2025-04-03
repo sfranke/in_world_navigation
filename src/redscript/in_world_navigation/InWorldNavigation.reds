@@ -21,6 +21,15 @@ public native class InWorldNavigation extends IScriptable {
   let mode: InWorldNavigationMode = InWorldNavigationMode.Driving;
 
   @runtimeProperty("ModSettings.mod", "In-World Navigation")
+  @runtimeProperty("ModSettings.displayName", "Arrow size")
+  @runtimeProperty("ModSettings.description", "Scaling of arrows arrows")
+  @runtimeProperty("ModSettings.step", "0.1")
+  @runtimeProperty("ModSettings.min", "0.1")
+  @runtimeProperty("ModSettings.max", "2.0")
+  @runtimeProperty("ModSettings.dependency", "enabled")
+  let size: Float = 1.0;
+
+  @runtimeProperty("ModSettings.mod", "In-World Navigation")
   @runtimeProperty("ModSettings.displayName", "Arrow spacing")
   @runtimeProperty("ModSettings.description", "In-game units between arrows")
   @runtimeProperty("ModSettings.step", "0.5")
@@ -72,6 +81,8 @@ public native class InWorldNavigation extends IScriptable {
     this.navPathWhiteResource = Cast<FxResource>(r"user\\jackhumbert\\effects\\world_navigation_white.effect");
     this.navPathTealResource = Cast<FxResource>(r"user\\jackhumbert\\effects\\world_navigation_teal.effect");
     this.navPathCyanResource = Cast<FxResource>(r"user\\jackhumbert\\effects\\world_navigation_cyan.effect");
+
+    this.navPathWhiteResource.Scaling(this.size);
 
     let questFx: array<ref<FxInstance>>;
     let poiFx: array<ref<FxInstance>>;
